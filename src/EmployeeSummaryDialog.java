@@ -30,7 +30,7 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 	// vector with all Employees details
 	Vector<Object> allEmployees;
 	JButton back;
-	
+
 	public EmployeeSummaryDialog(Vector<Object> allEmployees) {
 		setTitle("Employee Summary");
 		setModal(true);
@@ -72,16 +72,16 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 		tableModel = new DefaultTableModel(this.allEmployees, header) {
 			public Class getColumnClass(int c) {
 				switch (c) {
-				case 0:
-					return Integer.class;
-				case 4:
-					return Character.class;
-				case 6:
-					return Double.class;
-				case 7:
-					return Boolean.class;
-				default:
-					return String.class;
+					case 0:
+						return Integer.class;
+					case 4:
+						return Character.class;
+					case 6:
+						return Double.class;
+					case 7:
+						return Boolean.class;
+					default:
+						return String.class;
 				}// end switch
 			}// end getColumnClass
 		};
@@ -104,11 +104,11 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 		buttonPanel.add(back = new JButton("Back"));
 		back.addActionListener(this);
 		back.setToolTipText("Return to main screen");
-		
+
 		summaryDialog.add(buttonPanel,"growx, pushx, wrap");
 		summaryDialog.add(scrollPane,"growx, pushx, wrap");
 		scrollPane.setBorder(BorderFactory.createTitledBorder("Employee Details"));
-		
+
 		return summaryDialog;
 	}// end summaryPane
 
@@ -120,16 +120,16 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 	}
 	// format for salary column
 	static class DecimalFormatRenderer extends DefaultTableCellRenderer {
-		 private static final DecimalFormat format = new DecimalFormat(
-		 "\u20ac ###,###,##0.00" );
+		private static final DecimalFormat format = new DecimalFormat(
+				"\u20ac ###,###,##0.00" );
 
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
-				int row, int column) {
+													   int row, int column) {
 
 			Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-			 JLabel label = (JLabel) c;
-			 label.setHorizontalAlignment(JLabel.RIGHT);
-			 // format salary column
+			JLabel label = (JLabel) c;
+			label.setHorizontalAlignment(JLabel.RIGHT);
+			// format salary column
 			value = format.format((Number) value);
 
 			return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
